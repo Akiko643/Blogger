@@ -1,0 +1,40 @@
+{
+  "name": "blogger",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^37.0.1",
+    "@ckeditor/ckeditor5-react": "^6.0.0",
+    "@editorjs/code": "^2.8.0",
+    "@editorjs/editorjs": "^2.26.5",
+    "@editorjs/header": "^2.7.0",
+    "@editorjs/list": "^1.8.0",
+    "@editorjs/paragraph": "^2.9.0",
+    "@tiptap/extension-color": "^2.0.2",
+    "@tiptap/extension-list-item": "^2.0.2",
+    "@tiptap/extension-text-style": "^2.0.2",
+    "@tiptap/react": "^2.0.2",
+    "@tiptap/starter-kit": "^2.0.2",
+    "bootstrap": "^5.2.3",
+    "editorjs-html": "^3.4.2",
+    "eslint": "8.37.0",
+    "eslint-config-next": "13.2.4",
+    "mongodb": "^5.2.0",
+    "next": "^13.3.1",
+    "path": "^0.12.7",
+    "react": "18.2.0",
+    "react-bootstrap": "^2.7.2",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@editorjs/checklist": "^1.4.0",
+    "@editorjs/quote": "^2.5.0",
+    "sass": "^1.61.0"
+  }
+}
