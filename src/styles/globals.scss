@@ -20,6 +20,15 @@
     // transform: translate(-50%, -50%);
 }
 
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-start {
+    display: flex;
+    align-items: flex-start;
+}
+
 a {
     text-decoration: none;
 }

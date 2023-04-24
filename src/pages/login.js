@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const loginUser = async ({ email, password }) => {
     var myHeaders = new Headers();
@@ -53,7 +54,10 @@ const Login = () => {
     };
 
     return (
-        <div className="center full-height">
+        <div className="center full-height flex-column">
+            <Head>
+                <title>Login</title>
+            </Head>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
@@ -93,9 +97,10 @@ const Login = () => {
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
+                <div>
+                    <Link href="/signUp">Sign Up</Link>
+                </div>
             </Form>
-
-            <Link href="/signUp">Sign Up</Link>
         </div>
     );
 };

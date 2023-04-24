@@ -20,7 +20,7 @@ export const UserProvider = ({ children }) => {
                 setUser(userData);
                 // if(path === '/login' || path ==='/signUp')
             } else {
-                router.replace("/login");
+                if (path !== "/signUp") router.replace("/login");
             }
         }
     }, [token]);

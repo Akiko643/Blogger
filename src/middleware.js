@@ -34,7 +34,7 @@ export async function middleware(req) {
         return NextResponse.next();
     }
     if (isAuthPage(pathname) && !verifiedToken) {
-        return;
+        return NextResponse.next();
     }
     if (isAuthPage(pathname) && verifiedToken) {
         return NextResponse.redirect(new URL("/", req.url));
