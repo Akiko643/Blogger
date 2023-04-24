@@ -11,6 +11,7 @@ const Home = () => {
     const { user, setUser } = useUser();
 
     const handleSubmitPost = async (e) => {
+        setLoading(true);
         e.preventDefault();
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -31,7 +32,12 @@ const Home = () => {
 
         fetch("/api/user/addPost", requestOptions)
             .then((response) => response.text())
-            .then((result) => console.log(result))
+            .then(() => {
+                alert("Successfully added");
+                setContent("");
+                setLoading(false);
+                setToggle(false);
+            })
             .catch((error) => console.log("error", error));
     };
 
@@ -51,6 +57,7 @@ const Home = () => {
                         <Button
                             variant="outline-primary"
                             onClick={handleSubmitPost}
+                            disabled={loading}
                         >
                             post
                         </Button>

@@ -4,6 +4,7 @@ import Underline from "@tiptap/extension-underline";
 import {
     FaBold,
     FaHeading,
+    FaImage,
     FaItalic,
     FaListOl,
     FaListUl,
@@ -13,8 +14,18 @@ import {
     FaUnderline,
     FaUndo,
 } from "react-icons/fa";
+import { useCallback } from "react";
+import Image from "@tiptap/extension-image";
 
 const MenuBar = ({ editor }) => {
+    const addImage = useCallback(() => {
+        const url = window.prompt("URL");
+
+        if (url) {
+            editor.chain().focus().setImage({ src: url }).run();
+        }
+    }, [editor]);
+
     if (!editor) {
         return null;
     }
@@ -98,6 +109,9 @@ const MenuBar = ({ editor }) => {
                 >
                     <FaQuoteLeft />
                 </button>
+                <button onClick={addImage}>
+                    <FaImage />
+                </button>
             </div>
             <div>
                 <button onClick={() => editor.chain().focus().undo().run()}>
@@ -113,7 +127,7 @@ const MenuBar = ({ editor }) => {
 
 const Tiptap = ({ setContent, content }) => {
     const editor = useEditor({
-        extensions: [StarterKit, Underline],
+        extensions: [StarterKit, Underline, Image],
         content,
 
         onUpdate: ({ editor }) => {

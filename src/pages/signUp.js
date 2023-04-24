@@ -53,7 +53,7 @@ const SignUp = () => {
                 if (token) {
                     setToken(token);
                     setUser(user);
-                    router.replace("/");
+                    router.push("/");
                 }
             }
         } catch (err) {
