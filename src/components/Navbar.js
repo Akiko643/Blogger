@@ -3,10 +3,11 @@ import Link from "next/link";
 import React, { useState } from "react";
 
 const Navbar = () => {
-    const { setToken, user } = useUser();
+    const { setToken, user, setUser } = useUser();
     const [toggle, setToggle] = useState(false);
     const logOut = () => {
         setToken(null);
+        setUser(null);
     };
 
     return (
@@ -20,7 +21,7 @@ const Navbar = () => {
                 </div>
                 {toggle && (
                     <div className="dropdown-elements-container">
-                        {user.role === "admin" && (
+                        {user?.role === "admin" && (
                             // <div className="dropdown-element">
                             <Link className="dropdown-element" href="/admin">
                                 admin page

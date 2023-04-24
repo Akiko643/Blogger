@@ -16,16 +16,7 @@ export const UserProvider = ({ children }) => {
 
     useEffect(() => {
         if (!loading) {
-            // if (token) {
-            // const dummyData = {
-            //     email: "admin@admin.com",
-            //     role: "admin",
-            // };
-            // const data = getUserInfoFromToken(token);
-            // setUser(dummyData);
-            // } else {
-            if (path !== "/signUp") router.replace("/login");
-            // }
+            if (!user && path !== "/signUp") router.replace("/login");
         }
     }, [token, loading, path]);
 
@@ -57,12 +48,17 @@ export const useCookie = (key) => {
 
     useEffect(() => {
         if (!loading) {
-            const CookieValue =
-                typeof cookie === "string" ? cookie : JSON.stringify(cookie);
+            if (!cookie) {
+                Cookies.remove(key);
+            } else {
+                const CookieValue =
+                    typeof cookie === "string"
+                        ? cookie
+                        : JSON.stringify(cookie);
 
-            console.log(CookieValue);
-            if (cookie) Cookies.set(key, CookieValue);
-            else Cookies.remove(key);
+                console.log(CookieValue);
+                Cookies.set(key, CookieValue);
+            }
         }
     }, [cookie]);
 
