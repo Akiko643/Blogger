@@ -1,27 +1,39 @@
 import { useUser } from "@/provider/userProvider";
 import Link from "next/link";
-import React from "react";
-import { Dropdown, DropdownButton } from "react-bootstrap";
+import React, { useState } from "react";
 
 const Navbar = () => {
-    const { user, setUser } = useUser();
-
-    if (!user) {
-        return <></>;
-    }
-
+    const { setToken, user } = useUser();
+    const [toggle, setToggle] = useState(false);
     const logOut = () => {
-        setUser(null);
+        setToken(null);
     };
 
     return (
         <div className="navbar-style">
-            <DropdownButton id="dropdown-basic-button" title={user.username}>
-                <Dropdown.Item>
-                    <Link href="/addpost">Add Post</Link>
-                </Dropdown.Item>
-                <Dropdown.Item onClick={logOut}>Log out</Dropdown.Item>
-            </DropdownButton>
+            <div className="my-dropdown">
+                <div
+                    className="dropdown-head"
+                    onClick={() => setToggle(!toggle)}
+                >
+                    {user?.email}
+                </div>
+                {toggle && (
+                    <div className="dropdown-elements-container">
+                        {user.role === "admin" && (
+                            <div className="dropdown-element">
+                                <Link href="/admin">admin page</Link>
+                            </div>
+                        )}
+                        <div className="dropdown-element">
+                            <Link href="/addpost">Add post</Link>
+                        </div>
+                        <div className="dropdown-element" onClick={logOut}>
+                            Log out
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

@@ -5,13 +5,15 @@ import Form from "react-bootstrap/Form";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const loginUser = async ({ email, password }) => {
+const signUpUser = async ({ email, password, passwordRepeat, role }) => {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
         email,
         password,
+        passwordRepeat,
+        role,
     });
 
     var requestOptions = {
@@ -21,14 +23,17 @@ const loginUser = async ({ email, password }) => {
         redirect: "follow",
     };
 
-    let data = await fetch("http://localhost:3000/api/login", requestOptions);
+    let data = await fetch("http://localhost:3000/api/signUp", requestOptions);
     return data;
 };
 
-const Login = () => {
+const SignUp = () => {
+    const roles = ["normal user", "admin"];
     const [userData, setUserData] = useState({
+        role: roles[0],
         email: "",
         password: "",
+        passwordRepeat: "",
     });
 
     const { token, setToken } = useUser();
@@ -39,7 +44,7 @@ const Login = () => {
             e.preventDefault();
             const form = e.currentTarget;
             if (form.checkValidity() === true) {
-                const response = await loginUser(userData);
+                const response = await signUpUser(userData);
                 const data = JSON.parse(await response.text());
                 if (response.status !== 200) throw new Error(data.message);
 
@@ -89,15 +94,52 @@ const Login = () => {
                         Please enter your password.
                     </Form.Control.Feedback>
                 </Form.Group>
+                <Form.Group
+                    className="mb-3"
+                    controlId="formBasicRepeatPassword"
+                >
+                    <Form.Label>Repeat Password</Form.Label>
+                    <Form.Control
+                        required
+                        defaultValue={userData.passwordRepeat}
+                        onChange={(e) =>
+                            setUserData({
+                                ...userData,
+                                passwordRepeat: e.target.value,
+                            })
+                        }
+                        type="password"
+                        placeholder="Repeat your password"
+                    />
+                    <Form.Control.Feedback type="invalid">
+                        Please repeat your password.
+                    </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>Select your role</Form.Label>
+                    <Form.Select
+                        defaultValue={userData.role}
+                        onChange={(e) => {
+                            setUserData({
+                                ...userData,
+                                role: e.target.value,
+                            });
+                        }}
+                    >
+                        {roles.map((single_role, index) => (
+                            <option key={index}>{single_role}</option>
+                        ))}
+                    </Form.Select>
+                </Form.Group>
 
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
             </Form>
 
-            <Link href="/signUp">Sign Up</Link>
+            <Link href="/login">Login</Link>
         </div>
     );
 };
 
-export default Login;
+export default SignUp;

@@ -4,6 +4,53 @@
     align-items: center;
 }
 
+.loading {
+    z-index: 100;
+    background-color: black;
+    opacity: 50%;
+}
+
+.my-dropdown {
+    border: 1px solid black;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    background-color: #fff;
+    // transform: translate(-50%, -50%);
+}
+
+a {
+    text-decoration: none;
+}
+
+.dropdown-head {
+    // position: absolute;
+    position: relative;
+    user-select: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1;
+}
+
+.dropdown-element {
+    position: relative;
+    border-top: 1px solid black;
+    padding: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    user-select: none;
+    z-index: 1;
+}
+
+.dropdown-element:hover {
+    background-color: #616161;
+}
+
+.dropdown-element:last-of-type {
+    border-radius: 0 0 10px 10px;
+}
+
 .full-height {
     height: 100vh;
 }
@@ -13,9 +60,11 @@
 }
 
 .navbar-style {
+    position: relative;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    height: 50px;
 }
 
 .space-between {
@@ -37,58 +86,103 @@
     padding: 10px;
 }
 
+/* TitTap Editor Design */
 .ProseMirror {
-    > * + * {
-        margin-top: 0.75em;
-    }
+    padding: 10px;
+    border-top: 1px solid grey;
+    background: white;
+    border-radius: 0 0 5px 5px;
+    min-height: 100px;
+}
+.ProseMirror:focus {
+    border: none;
+    outline: 1px solid aqua;
+}
 
-    ul,
-    ol {
-        padding: 0 1rem;
-    }
+.ProseMirror > * + * {
+    margin-top: 0.75em;
+}
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        line-height: 1.1;
-    }
+.ProseMirror ul,
+.ProseMirror ol {
+    padding: 0 2rem;
+}
 
-    code {
-        background-color: rgba(#616161, 0.1);
-        color: #616161;
-    }
+.ProseMirror h1,
+.ProseMirror h2,
+.ProseMirror h3,
+.ProseMirror h4,
+.ProseMirror h5,
+.ProseMirror h6 {
+    line-height: 1.1;
+}
 
-    pre {
-        background: #0d0d0d;
-        color: #fff;
-        font-family: "JetBrainsMono", monospace;
-        padding: 0.75rem 1rem;
-        border-radius: 0.5rem;
+.ProseMirror code {
+    background-color: rgba(#616161, 0.1);
+    color: #616161;
+}
 
-        code {
-            color: inherit;
-            padding: 0;
-            background: none;
-            font-size: 0.8rem;
-        }
-    }
+.ProseMirror pre {
+    background: #0d0d0d;
+    color: #fff;
+    font-family: "JetBrainsMono", monospace;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+}
+.ProseMirror code {
+    color: inherit;
+    padding: 0;
+    background: none;
+    font-size: 0.8rem;
+}
 
-    img {
-        max-width: 100%;
-        height: auto;
-    }
+.ProseMirror img {
+    max-width: 100%;
+    height: auto;
+}
 
-    blockquote {
-        padding-left: 1rem;
-        border-left: 2px solid rgba(#0d0d0d, 0.1);
-    }
+.ProseMirror blockquote {
+    padding-left: 1rem;
+    border-left: 3px solid #999999;
+}
 
-    hr {
-        border: none;
-        border-top: 2px solid rgba(#0d0d0d, 0.1);
-        margin: 2rem 0;
-    }
+.ProseMirror hr {
+    border: none;
+    border-top: 3px solid #999999;
+    margin: 2rem 0;
+}
+
+/* ............................ */
+.textEditor {
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+.menuBar {
+    padding-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.menuBar button {
+    font-size: 18px;
+    margin: 7px;
+    margin-right: 15px;
+    outline: none;
+    border: none;
+    background: none;
+    color: rgb(70, 70, 70);
+    cursor: pointer;
+}
+.menuBar button:last-child {
+    margin-right: 7px;
+}
+
+.heading3 {
+    font-size: 15px;
+}
+
+button.is_active {
+    background: rgb(197, 197, 197);
+    padding: 2px 3px;
+    border-radius: 2px;
 }

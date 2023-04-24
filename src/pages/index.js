@@ -1,22 +1,35 @@
 import CardBlog from "@/components/Cardblog";
 import { useUser } from "@/provider/userProvider";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 
-export default function Home() {
-    const data = [
-        { title: "blog 1", description: "lorem ipsum" },
-        { title: "blog 1", description: "lorem ipsum" },
-        { title: "blog 1", description: "lorem ipsum" },
-    ];
-
+export default function Home({ posts }) {
     const { user, setUser } = useUser();
 
     return (
         <>
-            {data.map(({ title, description }, index) => (
-                <CardBlog key={index} title={title} description={description} />
-            ))}
+            {posts.length > 0 ? (
+                posts.map((postData, index) => (
+                    <CardBlog key={index} postData={postData} />
+                ))
+            ) : (
+                <div>No posts to show.</div>
+            )}
         </>
     );
+}
+
+export async function getServerSideProps() {
+    // var requestOptions = {
+    //     method: "GET",
+    //     redirect: "follow",
+    // };
+
+    const res = await fetch("http://localhost:3000/api/user/getPosts");
+    const data = await res.json();
+    console.log(data);
+    const { posts } = data;
+    return {
+        props: {
+            posts,
+        },
+    };
 }

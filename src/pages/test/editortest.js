@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
 
-const Editor = dynamic(() => import("../components/CK"), { ssr: false });
+const Editor = dynamic(() => import("../components/editors/CK/CK"), { ssr: false });
 
 const EditorTest = () => {
     const [content, setContent] = useState("");

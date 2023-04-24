@@ -7,8 +7,8 @@ export default async function handler(req, res) {
             const { email, password, passwordRepeat, role } = req.body;
             validate({ email, password, passwordRepeat, role });
 
-            const user = await signUp(email, password, passwordRepeat, role);
-            return res.json({ user });
+            const token = await signUp(email, password, passwordRepeat, role);
+            return res.json({ token });
         }
     } catch (err) {
         return res.status(400).json({ message: err.message });

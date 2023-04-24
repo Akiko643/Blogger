@@ -1,4 +1,5 @@
 import { UserProvider } from "@/provider/userProvider";
+
 import "@/styles/globals.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 
