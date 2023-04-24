@@ -22,12 +22,25 @@ const PostPage = ({ post }) => {
             .then((result) => console.log(result))
             .catch((error) => console.log("error", error));
     };
+    const updateView = () => {
+        var requestOptions = {
+            method: "PATCH",
+            redirect: "follow",
+        };
 
-    useEffect(() => {}, []);
+        fetch(`http://localhost:3000/api/post?id=${id}`, requestOptions)
+            .then((response) => response.text())
+            .then((result) => console.log(result))
+            .catch((error) => console.log("error", error));
+    };
+
+    useEffect(() => {
+        updateView();
+    }, []);
 
     return (
         <div>
-            <Post postData={post} />;
+            <Post postData={post} />
             {!approved && (
                 <Button variant="success" onClick={handleApprove}>
                     Approve

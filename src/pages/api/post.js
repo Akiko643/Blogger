@@ -1,4 +1,4 @@
-import { getPost } from "@lib/mongo/data.controller";
+import { addView, getPost } from "@lib/mongo/data.controller";
 import { validate } from "@lib/validation";
 
 export default async function handler(req, res) {
@@ -10,6 +10,8 @@ export default async function handler(req, res) {
             return res.json({ post });
         }
         if (req.method === "PATCH") {
+            const post = await addView(id);
+            return res.json({ post });
         }
     } catch (err) {
         return res.status(400).json({ message: err.message });
