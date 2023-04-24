@@ -20,7 +20,7 @@ export async function getServerSideProps() {
             ? "http://localhost:3000"
             : "https://blogger-uuy.vercel.app";
 
-    const res = await fetch(base_url + "/api/admin/getPosts");
+    const res = await fetch(base_url + "/api/admin/post");
     const data = await res.json();
     const { posts } = data;
     return {

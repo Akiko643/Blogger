@@ -1,10 +1,10 @@
 import Post from "@/components/Post";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 
 const PostPage = ({ post }) => {
-    const { approved } = post;
+    const [approved, setApproved] = useState(post?.approved);
     const router = useRouter();
     const { id } = router.query;
 
@@ -16,9 +16,28 @@ const PostPage = ({ post }) => {
 
         fetch(`/api/admin/approvePost?id=${id}`, requestOptions)
             .then((response) => response.text())
-            .then((result) => console.log(result))
+            .then(() => {
+                setApproved(true);
+                router.back();
+            })
             .catch((error) => console.log("error", error));
     };
+
+    const handleDelete = () => {
+        var requestOptions = {
+            method: "DELETE",
+            redirect: "follow",
+        };
+
+        fetch(`/api/post?id=${id}`, requestOptions)
+            .then((response) => response.text())
+            .then(() => {
+                setApproved(true);
+                router.back();
+            })
+            .catch((error) => console.log("error", error));
+    };
+
     const updateView = () => {
         var requestOptions = {
             method: "PATCH",
@@ -39,9 +58,14 @@ const PostPage = ({ post }) => {
         <div>
             <Post postData={post} />
             {!approved && (
-                <Button variant="success" onClick={handleApprove}>
-                    Approve
-                </Button>
+                <>
+                    <Button variant="success" onClick={handleApprove}>
+                        Approve
+                    </Button>
+                    <Button variant="danger" onClick={handleDelete}>
+                        Delete
+                    </Button>
+                </>
             )}
         </div>
     );

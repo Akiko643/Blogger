@@ -1,4 +1,4 @@
-import { getPosts } from "@lib/mongo/data.controller";
+import { deletePost, getPosts } from "@lib/mongo/data.controller";
 import { validate } from "@lib/validation";
 
 export default async function handler(req, res) {

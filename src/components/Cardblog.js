@@ -14,7 +14,7 @@ const CardBlog = ({ postData }) => {
 
     const [title, setTitle] = useState(getTitleFromContent(content));
     return (
-        <Card style={{ width: "18rem" }}>
+        <Card style={{ width: "18rem", marginTop: "12px" }}>
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
                 <Card.Text>viewCount: {viewCount}</Card.Text>
