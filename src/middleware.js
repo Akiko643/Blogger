@@ -1,5 +1,4 @@
-import { verifyToken } from "@lib/authSession";
-// import connectMongo from "@lib/mongo";
+import { verifyToken } from "@lib/joseAuth";
 import { NextResponse } from "next/server";
 
 // This function can be marked `async` if using `await` inside

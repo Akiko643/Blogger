@@ -1,7 +1,8 @@
 import Navbar from "@/components/Navbar";
 import { useRouter } from "next/router";
 import { createContext, useContext, useEffect, useState } from "react";
-import { getUserInfoFromToken, verifyToken } from "@lib/authSession";
+import { getUserInfoFromToken } from "@lib/authSession";
+
 import Cookies from "js-cookie";
 
 const UserContext = createContext();
@@ -14,16 +15,10 @@ export const UserProvider = ({ children }) => {
     const { route: path } = router;
 
     useEffect(() => {
-        // const getUserInfoFromToken = async (token) => {
-        //     console.log(process.env.PRIVATE_KEY);
-        //     const userData = await verifyToken(token, process.env.PRIVATE_KEY);
-        //     setUser(userData);
-        // };
         if (!loading) {
             if (token) {
                 const data = getUserInfoFromToken(token);
                 setUser(data);
-                // if(path === '/login' || path ==='/signUp')
             } else {
                 if (path !== "/signUp") router.replace("/login");
             }
