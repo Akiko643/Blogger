@@ -17,12 +17,6 @@ export default function Home({ posts }) {
     );
 }
 
-const getPosts = async () => {
-    const res = await fetch("/api/user/getPosts");
-    const data = await res.json();
-    return data;
-};
-
 export async function getServerSideProps() {
     // var requestOptions = {
     //     method: "GET",

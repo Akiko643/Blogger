@@ -32,7 +32,7 @@ const Login = () => {
         password: "",
     });
 
-    const { token, setToken } = useUser();
+    const { token, setToken, setUser } = useUser();
     const router = useRouter();
 
     const handleSubmit = async (e) => {
@@ -44,9 +44,12 @@ const Login = () => {
                 const data = JSON.parse(await response.text());
                 if (response.status !== 200) throw new Error(data.message);
 
-                const { token } = data;
-                if (token) setToken(token);
-                router.replace("/");
+                const { token, user } = data;
+                if (token) {
+                    setToken(token);
+                    setUser(user);
+                    router.replace("/");
+                }
             }
         } catch (err) {
             alert(err.message);

@@ -16,16 +16,16 @@ export const UserProvider = ({ children }) => {
 
     useEffect(() => {
         if (!loading) {
-            if (token) {
-                const dummyData = {
-                    email: "admin@admin.com",
-                    role: "admin",
-                };
-                // const data = getUserInfoFromToken(token);
-                setUser(dummyData);
-            } else {
-                if (path !== "/signUp") router.replace("/login");
-            }
+            // if (token) {
+            // const dummyData = {
+            //     email: "admin@admin.com",
+            //     role: "admin",
+            // };
+            // const data = getUserInfoFromToken(token);
+            // setUser(dummyData);
+            // } else {
+            if (path !== "/signUp") router.replace("/login");
+            // }
         }
     }, [token, loading, path]);
 
