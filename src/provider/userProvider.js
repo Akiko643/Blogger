@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import { useRouter } from "next/router";
 import { createContext, useContext, useEffect, useState } from "react";
-import { getUserInfoFromToken } from "@lib/authSession";
+// import { getUserInfoFromToken } from "@lib/authSession";
 
 import Cookies from "js-cookie";
 
@@ -17,8 +17,12 @@ export const UserProvider = ({ children }) => {
     useEffect(() => {
         if (!loading) {
             if (token) {
-                const data = getUserInfoFromToken(token);
-                setUser(data);
+                const dummyData = {
+                    email: "admin@admin.com",
+                    role: "admin",
+                };
+                // const data = getUserInfoFromToken(token);
+                setUser(dummyData);
             } else {
                 if (path !== "/signUp") router.replace("/login");
             }
