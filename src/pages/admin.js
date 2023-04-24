@@ -15,7 +15,12 @@ export default function Admin({ posts }) {
 }
 
 export async function getServerSideProps() {
-    const res = await fetch("http://localhost:3000/api/admin/getPosts");
+    const base_url =
+        process.env.NODE_ENV === "development"
+            ? "http://localhost:3000"
+            : "https://blogger-git-main-uuy.vercel.app";
+
+    const res = await fetch(base_url + "/api/admin/getPosts");
     const data = await res.json();
     const { posts } = data;
     return {

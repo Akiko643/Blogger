@@ -22,7 +22,7 @@ const loginUser = async ({ email, password }) => {
         redirect: "follow",
     };
 
-    let data = await fetch("http://localhost:3000/api/login", requestOptions);
+    let data = await fetch("/api/login", requestOptions);
     return data;
 };
 

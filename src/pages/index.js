@@ -17,13 +17,23 @@ export default function Home({ posts }) {
     );
 }
 
+const getPosts = async () => {
+    const res = await fetch("/api/user/getPosts");
+    const data = await res.json();
+    return data;
+};
+
 export async function getServerSideProps() {
     // var requestOptions = {
     //     method: "GET",
     //     redirect: "follow",
     // };
+    const base_url =
+        process.env.NODE_ENV === "development"
+            ? "http://localhost:3000"
+            : "https://blogger-git-main-uuy.vercel.app";
 
-    const res = await fetch("http://localhost:3000/api/user/getPosts");
+    const res = await fetch(base_url + "/api/user/getPosts");
     const data = await res.json();
     const { posts } = data;
     return {

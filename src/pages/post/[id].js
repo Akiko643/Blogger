@@ -51,8 +51,13 @@ const PostPage = ({ post }) => {
 };
 
 export async function getServerSideProps(context) {
+    const base_url =
+        process.env.NODE_ENV === "development"
+            ? "http://localhost:3000"
+            : "https://blogger-git-main-uuy.vercel.app";
+
     const { id } = context.params;
-    const res = await fetch(`http://localhost:3000/api/post?id=${id}`);
+    const res = await fetch(`${base_url}/api/post?id=${id}`);
     const data = await res.json();
     const { post } = data;
     return {

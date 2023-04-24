@@ -24,7 +24,7 @@ const signUpUser = async ({ email, password, passwordRepeat, role }) => {
         redirect: "follow",
     };
 
-    let data = await fetch("http://localhost:3000/api/signUp", requestOptions);
+    let data = await fetch("/api/signUp", requestOptions);
     return data;
 };
 
