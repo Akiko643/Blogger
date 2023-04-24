@@ -23,7 +23,7 @@ export const UserProvider = ({ children }) => {
                 if (path !== "/signUp") router.replace("/login");
             }
         }
-    }, [token]);
+    }, [token, loading, path]);
 
     return (
         <UserContext.Provider value={{ token, setToken, user, setUser }}>

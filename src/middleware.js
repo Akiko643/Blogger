@@ -19,11 +19,11 @@ const isAdminRoute = (pathname) => {
 
 export async function middleware(req) {
     const { pathname } = req.nextUrl;
-    console.log("pathname", pathname);
+    // console.log("pathname", pathname);
     let token = req.cookies.get("user-token")?.value;
-    console.log("token: ", token);
+    // console.log("token: ", token);
     const verifiedToken = token && (await verifyToken(token));
-    console.log("verifiedToken", verifiedToken);
+    // console.log("verifiedToken", verifiedToken);
     if (
         isAdminRoute(pathname) &&
         (!verifiedToken || verifiedToken?.role !== "admin")
