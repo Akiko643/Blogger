@@ -52,7 +52,6 @@ const PostPage = ({ post }) => {
 
 export async function getServerSideProps(context) {
     const { id } = context.params;
-    console.log("id", id);
     const res = await fetch(`http://localhost:3000/api/post?id=${id}`);
     const data = await res.json();
     const { post } = data;

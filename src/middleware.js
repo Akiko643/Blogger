@@ -19,11 +19,8 @@ const isAdminRoute = (pathname) => {
 
 export async function middleware(req) {
     const { pathname } = req.nextUrl;
-    // console.log("pathname", pathname);
     let token = req.cookies.get("user-token")?.value;
-    // console.log("token: ", token);
     const verifiedToken = token && (await verifyToken(token));
-    // console.log("verifiedToken", verifiedToken);
     if (
         isAdminRoute(pathname) &&
         (!verifiedToken || verifiedToken?.role !== "admin")
@@ -40,7 +37,6 @@ export async function middleware(req) {
         return NextResponse.redirect(new URL("/", req.url));
     }
     if (!verifiedToken) {
-        console.log("me redirecting?");
         return NextResponse.redirect(new URL("/login", req.url));
     }
     return NextResponse.next();

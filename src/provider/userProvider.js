@@ -14,10 +14,15 @@ export const UserProvider = ({ children }) => {
     const { route: path } = router;
 
     useEffect(() => {
+        // const getUserInfoFromToken = async (token) => {
+        //     console.log(process.env.PRIVATE_KEY);
+        //     const userData = await verifyToken(token, process.env.PRIVATE_KEY);
+        //     setUser(userData);
+        // };
         if (!loading) {
             if (token) {
-                const userData = getUserInfoFromToken(token);
-                setUser(userData);
+                const data = getUserInfoFromToken(token);
+                setUser(data);
                 // if(path === '/login' || path ==='/signUp')
             } else {
                 if (path !== "/signUp") router.replace("/login");
