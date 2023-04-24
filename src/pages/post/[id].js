@@ -14,10 +14,7 @@ const PostPage = ({ post }) => {
             redirect: "follow",
         };
 
-        fetch(
-            `http://localhost:3000/api/admin/approvePost?id=${id}`,
-            requestOptions
-        )
+        fetch(`/api/admin/approvePost?id=${id}`, requestOptions)
             .then((response) => response.text())
             .then((result) => console.log(result))
             .catch((error) => console.log("error", error));
@@ -28,7 +25,7 @@ const PostPage = ({ post }) => {
             redirect: "follow",
         };
 
-        fetch(`http://localhost:3000/api/post?id=${id}`, requestOptions)
+        fetch(`/api/post?id=${id}`, requestOptions)
             .then((response) => response.text())
             .then((result) => console.log(result))
             .catch((error) => console.log("error", error));
