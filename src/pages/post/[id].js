@@ -54,7 +54,7 @@ export async function getServerSideProps(context) {
     const base_url =
         process.env.NODE_ENV === "development"
             ? "http://localhost:3000"
-            : "https://blogger-git-main-uuy.vercel.app";
+            : "https://blogger-uuy.vercel.app";
 
     const { id } = context.params;
     const res = await fetch(`${base_url}/api/post?id=${id}`);
