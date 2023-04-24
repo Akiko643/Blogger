@@ -1,14 +1,22 @@
 import Link from "next/link";
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
+const getTitleFromContent = (content) => {
+    const startIndex = content.indexOf("<h2>");
+    const endIndex = content.indexOf("</h2>");
+    return content.slice(startIndex + 4, endIndex);
+};
+
 const CardBlog = ({ postData }) => {
     const { _id, post, content, viewCount } = postData;
+
+    const [title, setTitle] = useState(getTitleFromContent(content));
     return (
         <Card style={{ width: "18rem" }}>
-            {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
             <Card.Body>
-                <Card.Title>123</Card.Title>
+                <Card.Title>{title}</Card.Title>
                 <Card.Text>viewCount: {viewCount}</Card.Text>
                 <Link href={`/post/${_id}`}>
                     <Button variant="primary">read more...</Button>

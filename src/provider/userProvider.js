@@ -9,7 +9,7 @@ const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
     const [token, setToken, loading] = useCookie("user-token");
-    const [user, setUser] = useState(true);
+    const [user, setUser] = useCookie("user-data");
 
     const router = useRouter();
     const { route: path } = router;
@@ -47,13 +47,21 @@ export const useCookie = (key) => {
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         const data = Cookies.get(key);
-        setCookie(data);
+        try {
+            setCookie(JSON.parse(data));
+        } catch {
+            setCookie(data);
+        }
         setLoading(false);
     }, []);
 
     useEffect(() => {
         if (!loading) {
-            if (cookie) Cookies.set(key, cookie);
+            const CookieValue =
+                typeof cookie === "string" ? cookie : JSON.stringify(cookie);
+
+            console.log(CookieValue);
+            if (cookie) Cookies.set(key, CookieValue);
             else Cookies.remove(key);
         }
     }, [cookie]);
