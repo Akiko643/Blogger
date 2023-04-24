@@ -18,6 +18,7 @@ const isAdminRoute = (pathname) => {
 
 export async function middleware(req) {
     const { pathname } = req.nextUrl;
+    console.log(pathname);
     let token = req.cookies.get("user-token")?.value;
     const verifiedToken = token && (await verifyToken(token));
     if (
@@ -38,6 +39,13 @@ export async function middleware(req) {
     if (!verifiedToken) {
         return NextResponse.redirect(new URL("/login", req.url));
     }
+    if (pathname === "/") {
+        return NextResponse.rewrite(new URL("/posts/normalUser", req.url));
+    }
+    if (pathname === "/admin") {
+        return NextResponse.rewrite(new URL("/posts/admin", req.url));
+    }
+
     return NextResponse.next();
 }
 export const config = {
