@@ -32,7 +32,7 @@ const Login = () => {
         password: "",
     });
 
-    const { token, setToken, setUser } = useUser();
+    const { setToken, setUser } = useUser();
     const router = useRouter();
 
     const handleSubmit = async (e) => {
@@ -48,7 +48,7 @@ const Login = () => {
                 if (token) {
                     setToken(token);
                     setUser(user);
-                    router.replace("/");
+                    router.push("/");
                 }
             }
         } catch (err) {

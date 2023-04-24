@@ -56,7 +56,6 @@ export const useCookie = (key) => {
                         ? cookie
                         : JSON.stringify(cookie);
 
-                console.log(CookieValue);
                 Cookies.set(key, CookieValue);
             }
         }
