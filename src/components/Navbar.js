@@ -21,13 +21,17 @@ const Navbar = () => {
                 {toggle && (
                     <div className="dropdown-elements-container">
                         {user.role === "admin" && (
-                            <div className="dropdown-element">
-                                <Link href="/admin">admin page</Link>
-                            </div>
+                            // <div className="dropdown-element">
+                            <Link className="dropdown-element" href="/admin">
+                                admin page
+                            </Link>
+                            // </div>
                         )}
-                        <div className="dropdown-element">
-                            <Link href="/addpost">Add post</Link>
-                        </div>
+                        {/* <div className="dropdown-element"> */}
+                        <Link className="dropdown-element" href="/addpost">
+                            Add post
+                        </Link>
+                        {/* </div> */}
                         <div className="dropdown-element" onClick={logOut}>
                             Log out
                         </div>

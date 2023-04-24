@@ -3,11 +3,13 @@ import { validate } from "@lib/validation";
 
 export default async function handler(req, res) {
     try {
+        const { id } = req.query;
+        validate(id);
         if (req.method === "GET") {
-            const { id } = req.query;
-            validate(id);
             const post = await getPost(id);
             return res.json({ post });
+        }
+        if (req.method === "PATCH") {
         }
     } catch (err) {
         return res.status(400).json({ message: err.message });
